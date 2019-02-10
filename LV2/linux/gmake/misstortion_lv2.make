@@ -69,7 +69,7 @@ ifeq ($(config),release_x32)
   TARGETDIR = build/Misstortion.lv2
   TARGET = $(TARGETDIR)/Misstortion.so
   OBJDIR = build/.intermediate_linux/lv2_release/x32
-  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DJucePlugin_Build_LV2=1 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0 -DJUCE_WEB_BROWSER=0 -DJucePlugin_LV2URI=\"urn:juce:Misstortion\" -DJucePlugin_WantsLV2Latency=0 -DJucePlugin_WantsLV2TimePos=0 -DJucePlugin_WantsLV2State=0 -DJucePlugin_WantsLV2Presets=0
+  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DJucePlugin_Build_LV2=1 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0 -DJUCE_WEB_BROWSER=0 -DJucePlugin_LV2URI=\"urn:juce:Misstortion\" -DJucePlugin_WantsLV2Latency=0 -DJucePlugin_WantsLV2TimePos=0 -DJucePlugin_WantsLV2State=0 -DJucePlugin_WantsLV2Presets=0 -D__sigemptyset=sigemptyset
   INCLUDES += -I../../../JuceLibraryCode -I../../../Libraries/DISTRHO-juce/modules -I../../../Libraries -I/usr/include -I/usr/include/freetype2
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)

@@ -10,7 +10,7 @@
               pluginCode="Orqg" pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="MisstortionAU" pluginRTASCategory="" aaxIdentifier="tools.nimble.Misstortion"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.2.1"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.1.2"
               companyName="Nimble Tools">
   <MAINGROUP id="vPO1z4" name="Misstortion">
     <GROUP id="{57A15D64-C98D-E527-20C9-4AF922BE835F}" name="Source">

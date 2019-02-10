@@ -10,8 +10,10 @@ To build the plugin as an LV2, run the following commands (you'll need the usual
 
 ```
 git submodule update --init --recursive
-./build_lv2_linux.sh
+ARCH=x64 ./build_lv2_linux.sh
 ```
+
+You can also set ARCH=x86 for a 32 bits build.
 
 The plugin will be placed in the LV2/linux/gmake/build/ folder.
 
