@@ -2,7 +2,7 @@
 
 This is a fork of [Misstortion](https://github.com/nimbletools/misstortion) that allows building it as an LV2 on Linux.
 
-Linux LV2 and VST builds are available in the releases tab.
+Linux LV2 and VST2 builds are available in the releases tab.
 
 # Build
 
