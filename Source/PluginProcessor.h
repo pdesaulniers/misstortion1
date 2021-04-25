@@ -11,6 +11,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <juce_dsp/juce_dsp.h>
 
 
 //==============================================================================
@@ -28,9 +29,19 @@ public:
 	AudioParameterInt* m_paramToneHP;
 	AudioParameterInt* m_paramToneLP;
 	AudioParameterFloat* m_paramSymmetry;
+	AudioParameterInt* m_paramFilterMode;
 
-	IIRFilter m_filtersHP[2];
-	IIRFilter m_filtersLP[2];
+	typedef dsp::ProcessorDuplicator<
+		dsp::IIR::Filter<float>,
+		dsp::IIR::Coefficients<float>
+	> FilterType;
+
+	FilterType m_filterHP;
+	FilterType m_filterLP;
+
+	// Legacy filters (1 per channel)
+	IIRFilter m_filtersHPLegacy[2];
+	IIRFilter m_filtersLPLegacy[2];
 
 #if DEBUG
 	String m_debugText;
