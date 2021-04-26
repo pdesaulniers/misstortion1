@@ -22,7 +22,7 @@ ifeq ($(config),debug_x32)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -O0 -fPIC -g -Wall -Wextra -DHAVE_LROUND -fmessage-length=78 -fno-inline -ggdb
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m32 -O0 -fPIC -g -Wall -Wextra -std=c++14 -DHAVE_LROUND -fmessage-length=78 -fno-inline -ggdb
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext
+  LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext -lcurl
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib32 -m32 -shared -Wl,-soname=Misstortion.so -Wl,--no-undefined
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
@@ -49,7 +49,7 @@ ifeq ($(config),debug_x64)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O0 -fPIC -g -Wall -Wextra -DHAVE_LROUND -fmessage-length=78 -fno-inline -ggdb
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O0 -fPIC -g -Wall -Wextra -std=c++14 -DHAVE_LROUND -fmessage-length=78 -fno-inline -ggdb
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext
+  LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext -lcurl
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -m64 -shared -Wl,-soname=Misstortion.so -Wl,--no-undefined
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
@@ -69,14 +69,14 @@ ifeq ($(config),release_x32)
   TARGETDIR = build/Misstortion.lv2
   TARGET = $(TARGETDIR)/Misstortion.so
   OBJDIR = build/.intermediate_linux/lv2_release/x32
-  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DJucePlugin_Build_LV2=1 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0 -DJUCE_WEB_BROWSER=0 -DJucePlugin_LV2URI=\"urn:juce:Misstortion\" -DJucePlugin_WantsLV2Latency=0 -DJucePlugin_WantsLV2TimePos=0 -DJucePlugin_WantsLV2State=0 -DJucePlugin_WantsLV2Presets=0 -D__sigemptyset=sigemptyset
+  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DJucePlugin_Build_LV2=1 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0 -DJUCE_WEB_BROWSER=0 -DJucePlugin_LV2URI=\"urn:juce:Misstortion\" -DJucePlugin_WantsLV2Latency=0 -DJucePlugin_WantsLV2TimePos=0 -DJucePlugin_WantsLV2State=0 -DJucePlugin_WantsLV2Presets=0
   INCLUDES += -I../../../JuceLibraryCode -I../../../Libraries/DISTRHO-juce/modules -I../../../Libraries -I/usr/include -I/usr/include/freetype2
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -DHAVE_LROUND -fmessage-length=78 -fvisibility=hidden -pipe -Wno-deprecated
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m32 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -std=c++14 -DHAVE_LROUND -fmessage-length=78 -fvisibility=hidden -pipe -Wno-deprecated
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext
+  LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext -lcurl
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib32 -m32 -shared -Wl,-soname=Misstortion.so -s -Wl,--no-undefined
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
@@ -103,7 +103,7 @@ ifeq ($(config),release_x64)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -DHAVE_LROUND -fmessage-length=78 -fvisibility=hidden -pipe -Wno-deprecated
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -std=c++14 -DHAVE_LROUND -fmessage-length=78 -fvisibility=hidden -pipe -Wno-deprecated
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext
+  LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext -lcurl
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -m64 -shared -Wl,-soname=Misstortion.so -s -Wl,--no-undefined
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
@@ -130,6 +130,7 @@ OBJECTS := \
 	$(OBJDIR)/include_juce_core.o \
 	$(OBJDIR)/include_juce_cryptography.o \
 	$(OBJDIR)/include_juce_data_structures.o \
+	$(OBJDIR)/include_juce_dsp.o \
 	$(OBJDIR)/include_juce_events.o \
 	$(OBJDIR)/include_juce_graphics.o \
 	$(OBJDIR)/include_juce_gui_basics.o \
@@ -226,6 +227,9 @@ $(OBJDIR)/include_juce_cryptography.o: ../../../JuceLibraryCode/include_juce_cry
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/include_juce_data_structures.o: ../../../JuceLibraryCode/include_juce_data_structures.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/include_juce_dsp.o: ../../../JuceLibraryCode/include_juce_dsp.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/include_juce_events.o: ../../../JuceLibraryCode/include_juce_events.cpp
