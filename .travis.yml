@@ -1,0 +1,17 @@
+sudo: required
+
+language: cpp
+compiler: gcc
+dist: bionic
+addons:
+  apt:
+    packages:
+    - gcc
+    - g++
+    - libfreetype-dev
+    - libx11-dev
+    - libxext-dev
+    - libcurl-dev
+script:
+    - ./build_lv2_linux.sh
+
