@@ -14,11 +14,17 @@ endif
 ifeq ($(config),debug_x64)
   misstortion_lv2_config = debug_x64
 endif
+ifeq ($(config),debug_arm)
+  misstortion_lv2_config = debug_arm
+endif
 ifeq ($(config),release_x32)
   misstortion_lv2_config = release_x32
 endif
 ifeq ($(config),release_x64)
   misstortion_lv2_config = release_x64
+endif
+ifeq ($(config),release_arm)
+  misstortion_lv2_config = release_arm
 endif
 
 PROJECTS := misstortion_lv2
@@ -42,8 +48,10 @@ help:
 	@echo "CONFIGURATIONS:"
 	@echo "  debug_x32"
 	@echo "  debug_x64"
+	@echo "  debug_arm"
 	@echo "  release_x32"
 	@echo "  release_x64"
+	@echo "  release_arm"
 	@echo ""
 	@echo "TARGETS:"
 	@echo "   all (default)"

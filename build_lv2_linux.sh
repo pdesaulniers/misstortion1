@@ -24,6 +24,9 @@ if [ $ARCH = "x64" ]; then
 elif [ $ARCH = "x86" ]; then
 	echo "Building plugin for x86 ARCH..."
 	make build32 -C ./LV2/
+elif [ $ARCH = "ARM" ]; then
+	echo "Building plugin for ARM ARCH..."
+	make buildARM -C ./LV2/
 else
 	echo "Unsupported platform: $ARCH"
 	exit 1

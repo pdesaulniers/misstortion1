@@ -9,6 +9,8 @@ lv2_ttl_generator: lv2_ttl_generator.c
 	
 build32: lv2_ttl_generator32 plugin32 generate_ttl
 
+buildARM: lv2_ttl_generator pluginARM generate_ttl
+
 lv2_ttl_generator32: lv2_ttl_generator.c
 	$(CXX) lv2_ttl_generator.c -m32 -o lv2_ttl_generator -ldl
 
@@ -17,6 +19,9 @@ plugin: lv2_ttl_generator
 
 plugin32: lv2_ttl_generator.c
 	make config=release_x32 -C linux/gmake/
+
+pluginARM: lv2_ttl_generator.c
+	make config=release_arm -C linux/gmake/
 
 generate_ttl: lv2_ttl_generator
 	./lv2_ttl_generator linux/gmake/build/Misstortion.lv2/Misstortion.so

@@ -64,6 +64,33 @@ all: prebuild prelink $(TARGET)
 
 endif
 
+ifeq ($(config),debug_arm)
+  RESCOMP = windres
+  TARGETDIR = build/Misstortion.lv2
+  TARGET = $(TARGETDIR)/Misstortion.so
+  OBJDIR = build/.intermediate_linux/lv2_debug/ARM
+  DEFINES += -DLINUX=1 -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DJucePlugin_Build_LV2=1 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0 -DJUCE_WEB_BROWSER=0 -DJucePlugin_LV2URI=\"urn:juce:Misstortion\" -DJucePlugin_WantsLV2Latency=0 -DJucePlugin_WantsLV2TimePos=0 -DJucePlugin_WantsLV2State=0 -DJucePlugin_WantsLV2Presets=0
+  INCLUDES += -I../../../JuceLibraryCode -I../../../Libraries/DISTRHO-juce/modules -I../../../Libraries -I/usr/include -I/usr/include/freetype2
+  FORCE_INCLUDE +=
+  ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O0 -fPIC -g -Wall -Wextra -DHAVE_LROUND -fmessage-length=78 -fno-inline -ggdb
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O0 -fPIC -g -Wall -Wextra -std=c++14 -DHAVE_LROUND -fmessage-length=78 -fno-inline -ggdb
+  ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
+  LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext -lcurl
+  LDDEPS +=
+  ALL_LDFLAGS += $(LDFLAGS) -shared -Wl,-soname=Misstortion.so -Wl,--no-undefined
+  LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
+  define PREBUILDCMDS
+  endef
+  define PRELINKCMDS
+  endef
+  define POSTBUILDCMDS
+  endef
+all: prebuild prelink $(TARGET)
+	@:
+
+endif
+
 ifeq ($(config),release_x32)
   RESCOMP = windres
   TARGETDIR = build/Misstortion.lv2
@@ -106,6 +133,33 @@ ifeq ($(config),release_x64)
   LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext -lcurl
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -m64 -shared -Wl,-soname=Misstortion.so -s -Wl,--no-undefined
+  LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
+  define PREBUILDCMDS
+  endef
+  define PRELINKCMDS
+  endef
+  define POSTBUILDCMDS
+  endef
+all: prebuild prelink $(TARGET)
+	@:
+
+endif
+
+ifeq ($(config),release_arm)
+  RESCOMP = windres
+  TARGETDIR = build/Misstortion.lv2
+  TARGET = $(TARGETDIR)/Misstortion.so
+  OBJDIR = build/.intermediate_linux/lv2_release/ARM
+  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DJucePlugin_Build_LV2=1 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0 -DJUCE_WEB_BROWSER=0 -DJucePlugin_LV2URI=\"urn:juce:Misstortion\" -DJucePlugin_WantsLV2Latency=0 -DJucePlugin_WantsLV2TimePos=0 -DJucePlugin_WantsLV2State=0 -DJucePlugin_WantsLV2Presets=0
+  INCLUDES += -I../../../JuceLibraryCode -I../../../Libraries/DISTRHO-juce/modules -I../../../Libraries -I/usr/include -I/usr/include/freetype2
+  FORCE_INCLUDE +=
+  ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -DHAVE_LROUND -fmessage-length=78 -fvisibility=hidden -pipe -Wno-deprecated
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -std=c++14 -DHAVE_LROUND -fmessage-length=78 -fvisibility=hidden -pipe -Wno-deprecated
+  ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
+  LIBS += -ldl -lfreetype -lpthread -lrt -lX11 -lXext -lcurl
+  LDDEPS +=
+  ALL_LDFLAGS += $(LDFLAGS) -shared -Wl,-soname=Misstortion.so -s -Wl,--no-undefined
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef

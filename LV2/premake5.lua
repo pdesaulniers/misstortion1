@@ -9,7 +9,7 @@ end
 
 workspace "misstortion"
     language "C++"
-    platforms { "x32", "x64" }
+    platforms { "x32", "x64", "ARM" }
     configurations { "Debug", "Release" }
 
     location (os.target() .. "/" .. _ACTION .. "/")
@@ -75,6 +75,9 @@ workspace "misstortion"
 
     filter { "platforms:x64" }
         architecture "x86_64"
+
+    filter { "platforms:ARM" }
+        architecture "ARM"
 
     filter { "configurations:Debug" }
         defines { "_DEBUG=1", "DEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=1" }
