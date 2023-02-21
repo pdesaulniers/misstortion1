@@ -1,13 +1,17 @@
-# Binary builds
-Builds/
-
-# Automatically generated code
-JuceLibraryCode/
-
-# MacOS garbage
-.DS_Store
-
-# LV2 builds & related
-LV2/linux/gmake/build/.intermediate_linux
-LV2/linux/gmake/build/Misstortion.lv2
-LV2/lv2_ttl_generator
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+cmake_install.cmake
+install_manifest.txt
+.vscode
+compile_commands.json
+*.kdev4
+.kdev4
+*.cpp.d
+*.cpp.o
+*.so
+.vagrant
+.releases
+/bin/
+build/
